@@ -1,0 +1,29 @@
+{
+  "name": "urlshortener",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon -r dotenv/config index.js",
+    "start": "node -r dotenv/config index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "geoip-lite": "^1.4.2",
+    "helmet": "^4.6.0",
+    "joi": "^17.4.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.0.8",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "jest": "^27.2.4",
+    "nodemon": "^2.0.13"
+  }
+}
