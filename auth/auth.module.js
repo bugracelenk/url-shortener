@@ -8,12 +8,16 @@ const GetUserValidation = Joi.object({
 }).min(1);
 
 const ChangePasswordValidation = Joi.object({
-  userId: Joi.objectId().required(),
   newPassword: Joi.string().required(),
   changePasswordToken: Joi.string().required(),
+});
+
+const ForgotPasswordValidation = Joi.object({
+  email: Joi.string().email().required(),
 });
 
 module.exports = {
   GetUserValidation,
   ChangePasswordValidation,
+  ForgotPasswordValidation,
 };

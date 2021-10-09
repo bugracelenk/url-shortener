@@ -6,7 +6,7 @@ const login = async (req, res, next) => {
   const [loginError, token] = await promiseHandler(AuthService.login(email, password, req));
 
   if (loginError) {
-    next(loginError);
+    return next(loginError);
   }
 
   return res.status(200).json({
@@ -34,7 +34,37 @@ const register = async (req, res, next) => {
   });
 };
 
+const forgotPassword = async (req, res, next) => {
+  const { email } = req.query;
+
+  const [forgotPasswordError] = await promiseHandler(AuthService.forgotPassword({ email }, req));
+  if (forgotPasswordError) {
+    return next(forgotPasswordError);
+  }
+
+  return res.status(200).json({
+    status: true,
+    message: "An email has been sent your email address! 📨",
+  });
+};
+
+const changePassword = async (req, res, next) => {
+  const { newPassword, changePasswordToken } = req.body;
+
+  const [changePasswordError] = await promiseHandler(AuthService.changePassword({ newPassword, changePasswordToken }, req));
+  if (changePasswordError) {
+    return next(changePasswordError);
+  }
+
+  return res.status(200).json({
+    status: true,
+    message: "Your password has been changed successfully ! ✅",
+  });
+};
+
 module.exports = {
   login,
   register,
+  forgotPassword,
+  changePassword,
 };
