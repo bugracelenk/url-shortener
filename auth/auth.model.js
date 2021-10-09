@@ -20,6 +20,14 @@ const AuthSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    changePasswordToken: {
+      type: String,
+      default: "",
+    },
+    changePasswordExpires: {
+      type: Date,
+      default: new Date(),
+    },
     role: {
       type: String,
       default: "USER",
