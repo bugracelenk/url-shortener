@@ -4,7 +4,9 @@ const promiseHandler = require("../utilities/promiseHandler");
 const getLogs = async (req, res, next) => {
   try {
     const { type, logType, limit, skip, ip, location, userId } = req.query;
-    const [logsError, logs] = await promiseHandler(LogsService.getLogs({ userId, type, ip, location }, logType, skip, limit));
+    const [logsError, logs] = await promiseHandler(
+      LogsService.getLogs({ userId, type, ip, location }, logType, skip, limit)
+    );
 
     if (logsError) {
       throw new Error(logsError);

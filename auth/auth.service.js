@@ -160,7 +160,12 @@ const changePassword = async (args, request) => {
     const errorLog = await LogService.createErrorLog({
       request,
       userId: null,
-      data: { ...args, userChangePasswordToken: user.changePasswordToken, userChangePasswordExpires: user.changePasswordExpires, time: Date.now() },
+      data: {
+        ...args,
+        userChangePasswordToken: user.changePasswordToken,
+        userChangePasswordExpires: user.changePasswordExpires,
+        time: Date.now(),
+      },
       type: "ChangePasswordError",
       error: "ChangePasswordError:TokensAreNotMatching",
     });
@@ -171,14 +176,21 @@ const changePassword = async (args, request) => {
     const errorLog = await LogService.createErrorLog({
       request,
       userId: null,
-      data: { ...args, userChangePasswordToken: user.changePasswordToken, userChangePasswordExpires: user.changePasswordExpires, time: Date.now() },
+      data: {
+        ...args,
+        userChangePasswordToken: user.changePasswordToken,
+        userChangePasswordExpires: user.changePasswordExpires,
+        time: Date.now(),
+      },
       type: "ChangePasswordError",
       error: "ChangePasswordError:TokenExpired",
     });
     throw new Error(`🚫 Not authorized!🚫 Error Log: ${errorLog._id}`);
   }
 
-  return await AuthModel.findByIdAndUpdate(user._id, { $set: { password: hash, changePasswordToken: "", changePasswordExpires: Date.now() } });
+  return await AuthModel.findByIdAndUpdate(user._id, {
+    $set: { password: hash, changePasswordToken: "", changePasswordExpires: Date.now() },
+  });
 };
 
 module.exports = {

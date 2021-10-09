@@ -51,7 +51,9 @@ const forgotPassword = async (req, res, next) => {
 const changePassword = async (req, res, next) => {
   const { newPassword, changePasswordToken } = req.body;
 
-  const [changePasswordError] = await promiseHandler(AuthService.changePassword({ newPassword, changePasswordToken }, req));
+  const [changePasswordError] = await promiseHandler(
+    AuthService.changePassword({ newPassword, changePasswordToken }, req)
+  );
   if (changePasswordError) {
     return next(changePasswordError);
   }
